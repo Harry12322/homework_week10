@@ -1,0 +1,87 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500,
+    "height": 400,
+    "title": "HDI and Total Ecological Footprint of each country",
+    "data": {
+    "url": "https://raw.githubusercontent.com/harry12322/homework_week10/main/data/countries.csv"
+    },
+    "params": [
+       
+        {
+        "name": "Continent_selection",
+        "bind": {
+        "input": "select",
+        "options": [
+        null,
+        "North America",
+        "South America",
+        "Europe",
+        "Africa",
+        "Asia",
+        "Oceania"
+        ],
+        "labels":[
+        "Show All",
+        "North America",
+        "South America",
+        "Europe",
+        "Africa",
+        "Asia",
+        "Oceania"
+        ],
+        "name": "Continent Selection: "
+        }
+        }
+        ],
+    "transform": [
+        {"filter": "Continent_selection == null || datum.Continent == Continent_selection"}
+      ],
+    "mark": "circle",
+    "encoding": {
+    "x": {
+    "field":"HDI",
+    "type": "quantitative",
+    "title": "HDI"
+    },
+    "y": {
+    "field": "Total Ecological Footprint",
+    "type": "quantitative"
+    },
+    "color": {
+    "field": "Continent",
+    "type": "nominal",
+    "scale": {
+    "domain": [
+    "North America",
+    "South America",
+    "Europe",
+    "Africa",
+    "Asia",
+    "Oceania"
+    ],
+    "range": [
+    "#e41a1c",
+    "#984ea3",
+    "#ff7f00",
+    "#a6cee3",
+    "#377eb8",
+    "#a65628"
+    ]
+    }
+    },
+    "opacity": {
+        "value": 0.6
+    },            
+    "size": {
+    "field": "Population (millions)",
+    "type": "quantitative"
+    },
+    "tooltip": [
+    {"field": "Country", "type": "nominal"},
+    {"field": "HDI", "type": "quantitative", "format": ","},
+    {"field": "Cropland Footprint", "type": "quantitative", "format": ","},
+    {"field": "Total Ecological Footprint", "type": "quantitative", "format": ","}
+    ]   
+}
+}
